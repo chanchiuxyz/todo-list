@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './index.css'
 
 export default class Footer extends Component {
   render() {
@@ -11,6 +12,7 @@ export default class Footer extends Component {
             <span>
                 <span>Compoleted 0</span>/ Total 2
             </span>
+            <button className="btn btn-delete">Remove completed Items</button>
       </div>
     )
   }

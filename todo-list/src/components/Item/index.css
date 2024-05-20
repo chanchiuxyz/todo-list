@@ -1,0 +1,33 @@
+/* Item */
+
+li {
+    list-style: none;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 5px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: raw;
+
+}
+
+li label {
+    /* float: left; */
+    cursor: pointer;
+}
+
+li label input {
+    vertical-align: middle;
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+}
+
+li button {
+    /* display: none; */
+    margin-top: 3px;
+    line-height: 25px;
+
+    
+}

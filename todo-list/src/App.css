@@ -36,3 +36,51 @@
     transform: rotate(360deg);
   }
 }
+/* begin */
+body {
+  background-color: #d5b7b7;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #da4f48;
+  border: 2px solid #bd362f;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color:  #bd362f;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.todo-container .todo-wrap {
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  width: 500px;
+ /* display: flex; */
+}
+
+.todo-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+
+/* end */
