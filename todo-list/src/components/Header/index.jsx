@@ -22,7 +22,7 @@ export default class Header extends Component {
     // console.log(this.props)
     return (
       <div className='todo-header'>
-        <input onKeyUp={this.handleKeyUp} type="text" placeholder='input a todo Item, the press Enter'/>
+        <input onKeyUp={this.handleKeyUp} type="text" placeholder='input a task, then press Enter'/>
       </div>
     )
   }
