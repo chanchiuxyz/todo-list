@@ -84,27 +84,30 @@ removeCompleteds = () => {
   }
 ```
 
-#localStorage(read and save)
+# localStorage(read and save)
 
 ```
-state= {todos:JSON.parse(localStorage.getItem('todos'))}
+
+//  when you visit the page first time, localDtorage.getItem('todos') will be null. todos.map() will be a Error . so initialize the state by the following codes when localDtorage.getItem('todos') will be null
+  state = JSON.parse(localStorage.getItem('todos')) ? 
+  {todos:JSON.parse(localStorage.getItem('todos'))} : 
+  {todos:[
+    {id:'1',name:'coding',done:true},
+    {id:'2',name:'eating',done:true},
+    {id:'3',name:'sleeping',done:false}
+]}
+
 // save data to local file
   saveData = (todos) =>{
     // const jsonPath = './state.json'
     // const jsonData = JSON.stringify(todos)
     localStorage.setItem('todos',JSON.stringify(todos))
-
-
   }
 
-  // componentDidMount(){
-  //   this.saveData(this.state.todos)
-  //   console.log('componentDidMount')
-
-  // }
 // save data to local storage after update todos
   componentDidUpdate(){
     this.saveData(this.state.todos)
+    // localStorage.removeItem('todos');
     // console.log('componentDidUpdate')
   }
   

@@ -16,20 +16,18 @@ import Footer from './components/Footer'
 
 // change function Component to class Component
 export default class App extends Component {
-  state = {todos:[
-      {id:'1',name:'coding',done:true},
-      {id:'2',name:'eating',done:true},
-      {id:'3',name:'sleeping',done:false}
-  ]}
+  // state = {todos:[
+  //     {id:'1',name:'coding',done:true},
+  //     {id:'2',name:'eating',done:true},
+  //     {id:'3',name:'sleeping',done:false}
+  // ]}
   // state = {todos:jsonData}
   state= {todos:JSON.parse(localStorage.getItem('todos'))}
-  state = {todos:[
-    {id:'1',name:'coding',done:true},
-    {id:'2',name:'eating',done:true},
-    {id:'3',name:'sleeping',done:false}
-]}
 
-  state = JSON.parse(localStorage.getItem('todos')) ? {todos:JSON.parse(localStorage.getItem('todos'))} : {todos:[
+//  when you visit the page first time, localDtorage.getItem('todos') will be null. todos.map() will be a Error . so initialize the state by the following codes when localDtorage.getItem('todos') will be null
+  state = JSON.parse(localStorage.getItem('todos')) ? 
+  {todos:JSON.parse(localStorage.getItem('todos'))} : 
+  {todos:[
     {id:'1',name:'coding',done:true},
     {id:'2',name:'eating',done:true},
     {id:'3',name:'sleeping',done:false}
@@ -45,18 +43,11 @@ export default class App extends Component {
 
   }
 
-  componentDidMount(){
-    if (this.state.todos.length ===0) 
-      this.state = {todos:[
-        {id:'1',name:'coding',done:true},
-        {id:'2',name:'eating',done:true},
-        {id:'3',name:'sleeping',done:false}
-    ]}
-
-  }
 // save data to local storage after update todos
   componentDidUpdate(){
     this.saveData(this.state.todos)
+
+    // localStorage.removeItem('todos');
     // console.log('componentDidUpdate')
   }
   
@@ -112,11 +103,15 @@ markTodos = (isMarkAll) => {
 
 }
 
+
 removeCompleteds = () => {
   const {todos} = this.state
   const newTodos = todos.filter(function(todo){
     return todo.done === false
   })
+
+  
+  
 
   this.setState({todos:newTodos})
 
