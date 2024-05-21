@@ -17,12 +17,14 @@ export default class Footer extends Component {
     let completeds = 0
     todos.map((todo) => {
         if (todo.done === true) completeds += 1
+        return todo
     })
+    const isTodosAllChecked = completeds === todos.length
 
     return (
       <div className="todo-footer">
         <label htmlFor="">
-            <input type="checkbox" onChange={this.markTodosOnChange} />
+            <input type="checkbox" checked={isTodosAllChecked} onChange={this.markTodosOnChange} />
 
         </label>
             <span>

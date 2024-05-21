@@ -2,23 +2,57 @@
 import './App.css';
 
 import React, { Component } from 'react'
-import Header from './components/Header';
-import List from './components/List';
-import Footer from './components/Footer';
+// import fs from 'fs'
+
+import Header from './components/Header'
+import List from './components/List'
+import Footer from './components/Footer'
+// ---read the local storage todos from json file-----
+// import jsonData from './state.json'
+
+// ---It's easy to read data from local json file, But i fail to save data to json file.----
+//----so i save and read data by localStorage.setItem()  and localStorage.getItem()
+
+
 // change function Component to class Component
 export default class App extends Component {
-  state = {todos:[
-      {id:'1',name:'coding',done:true},
-      {id:'2',name:'eating',done:true},
-      {id:'3',name:'sleeping',done:false}
+  // state = {todos:[
+  //     {id:'1',name:'coding',done:true},
+  //     {id:'2',name:'eating',done:true},
+  //     {id:'3',name:'sleeping',done:false}
+  // ]}
+  // state = {todos:jsonData}
+  state= {todos:JSON.parse(localStorage.getItem('todos'))}
+// save data to local file
+  saveData = (todos) =>{
+    // const jsonPath = './state.json'
+    // const jsonData = JSON.stringify(todos)
+    localStorage.setItem('todos',JSON.stringify(todos))
 
-  ]}
+
+  }
+
+  // componentDidMount(){
+  //   this.saveData(this.state.todos)
+  //   console.log('componentDidMount')
+
+  // }
+// save data to local storage after update todos
+  componentDidUpdate(){
+    this.saveData(this.state.todos)
+    // console.log('componentDidUpdate')
+  }
+  
+  
+
+
 // insert a new todo to todos ,the function will pass to Component Header by props
   addTodo = (todoObj)=>{
     const {todos} = this.state
     const newTodos = [todoObj,...todos]
 
     this.setState({todos:newTodos})
+    this.saveData(newTodos)
 
   }
 
@@ -39,7 +73,8 @@ martTOdo = (id) => {
   const newTodos = todos.map((todo)=>{
       // console.log(id,todo.id)
       // console.log(todo.done)
-      todo.id === id ? todo.done = !todo.done : todo.done = todo.done
+      // todo.id === id ? todo.done = !todo.done : todo.done = todo.done
+      if (todo.id === id) todo.done = !todo.done
       // console.log(todo.done)
       return todo
   })

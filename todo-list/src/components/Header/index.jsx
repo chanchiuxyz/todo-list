@@ -7,6 +7,10 @@ export default class Header extends Component {
         if (event.keyCode !== 13) {
             return
         }
+        if (event.target.value.trim() === '') {
+            alert('input task before press Enter')
+            return
+        }
         const todoObj = {id:Date.now().toString(),name:event.target.value,done:false}
         // console.log(event.target.value,event.keyCode)
         // console.log(todoObj)
