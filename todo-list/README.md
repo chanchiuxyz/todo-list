@@ -5,8 +5,9 @@
 # create componets
 ![](./src/pic/components.png)
 
-# css codes
+# layout
 
+![](./src/pic/layout.png)
 # interaction 
 ```
 // insert a new todo to todos ,the function will pass to Component Header by props
