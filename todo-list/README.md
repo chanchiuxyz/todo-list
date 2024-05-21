@@ -1,6 +1,6 @@
 # create app
 
-`npx create-react-app `
+`npx create-react-app todo-list`
 
 # create componets
 ![](./src/pic/components.png)
