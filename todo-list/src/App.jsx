@@ -8,19 +8,77 @@ import Footer from './components/Footer';
 // change function Component to class Component
 export default class App extends Component {
   state = {todos:[
-      {id:'001',name:'coding',done:true},
-      {id:'001',name:'eating',done:true},
-      {id:'001',name:'sleeping',done:false},
+      {id:'1',name:'coding',done:true},
+      {id:'2',name:'eating',done:true},
+      {id:'3',name:'sleeping',done:false}
 
   ]}
+// insert a new todo to todos ,the function will pass to Component Header by props
+  addTodo = (todoObj)=>{
+    const {todos} = this.state
+    const newTodos = [todoObj,...todos]
+
+    this.setState({todos:newTodos})
+
+  }
+
+  // delete a todo from todos,The function will pass to Component Item through Component List by props
+deleteTodo = (id)=>{
+    const {todos} = this.state
+    const newTodos = todos.filter(function(todo){
+      // console.log(todo.id,id)
+      return todo.id !== id
+
+    })
+    this.setState({todos:newTodos})
+}
+// mart tasks as completed or not, The function will pass to Component Item through Component List by props
+martTOdo = (id) => {
+  
+  const {todos} = this.state
+  const newTodos = todos.map((todo)=>{
+      // console.log(id,todo.id)
+      // console.log(todo.done)
+      todo.id === id ? todo.done = !todo.done : todo.done = todo.done
+      // console.log(todo.done)
+      return todo
+  })
+  // console.log(newTodos)
+  this.setState({todos:newTodos})
+}
+
+//  mart all tasks as completed or not, The function will pass to Component Footer by props
+markTodos = (isMarkAll) => {
+  const {todos} = this.state
+  const newTodos = todos.map((todo) => {
+    todo.done = isMarkAll
+    return todo
+
+  })
+  console.log(newTodos)
+  this.setState({todos:newTodos})
+
+}
+
+removeCompleteds = () => {
+  const {todos} = this.state
+  const newTodos = todos.filter(function(todo){
+    return todo.done === false
+  })
+
+  this.setState({todos:newTodos})
+
+}
+
   render() {
-    const todos = this.setState
+    console.log(this.state)
+    const {todos} = this.state
     return (
       <div className='todo-container'>
         <div className="todo-wrap">
-            <Header a='1' />
-            <List todos={todos}/>
-            <Footer />
+            <Header addTodo={this.addTodo} />
+            <List todos={todos} deleteTodo={this.deleteTodo} markTodo={this.martTOdo} />
+            <Footer todos={todos} markTodos={this.markTodos} removeCompleteds={this.removeCompleteds} />
         </div>
 
       </div>
