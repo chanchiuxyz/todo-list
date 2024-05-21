@@ -16,13 +16,26 @@ import Footer from './components/Footer'
 
 // change function Component to class Component
 export default class App extends Component {
-  // state = {todos:[
-  //     {id:'1',name:'coding',done:true},
-  //     {id:'2',name:'eating',done:true},
-  //     {id:'3',name:'sleeping',done:false}
-  // ]}
+  state = {todos:[
+      {id:'1',name:'coding',done:true},
+      {id:'2',name:'eating',done:true},
+      {id:'3',name:'sleeping',done:false}
+  ]}
   // state = {todos:jsonData}
   state= {todos:JSON.parse(localStorage.getItem('todos'))}
+  state = {todos:[
+    {id:'1',name:'coding',done:true},
+    {id:'2',name:'eating',done:true},
+    {id:'3',name:'sleeping',done:false}
+]}
+
+  state = JSON.parse(localStorage.getItem('todos')) ? {todos:JSON.parse(localStorage.getItem('todos'))} : {todos:[
+    {id:'1',name:'coding',done:true},
+    {id:'2',name:'eating',done:true},
+    {id:'3',name:'sleeping',done:false}
+]}
+
+
 // save data to local file
   saveData = (todos) =>{
     // const jsonPath = './state.json'
@@ -32,11 +45,15 @@ export default class App extends Component {
 
   }
 
-  // componentDidMount(){
-  //   this.saveData(this.state.todos)
-  //   console.log('componentDidMount')
+  componentDidMount(){
+    if (this.state.todos.length ===0) 
+      this.state = {todos:[
+        {id:'1',name:'coding',done:true},
+        {id:'2',name:'eating',done:true},
+        {id:'3',name:'sleeping',done:false}
+    ]}
 
-  // }
+  }
 // save data to local storage after update todos
   componentDidUpdate(){
     this.saveData(this.state.todos)
